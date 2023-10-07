@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 
-// Структуры
+// РЎС‚СЂСѓРєС‚СѓСЂС‹
 struct Company {
     char* name;
     char* found_date;
