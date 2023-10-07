@@ -37,12 +37,3 @@ struct Armory {
     char* military;
 };
 
-// Вспомогательные функции
-
-char vvod(char min, char max) { // автоматизировал проверку на допустимость ввода, ввод без нажатия ENTER
-    char x;
-    do {
-        x = _getch();
-    } while (x < min || x > max);
-    return x;
-}
