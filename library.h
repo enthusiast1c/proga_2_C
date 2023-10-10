@@ -237,21 +237,21 @@ void OutputWeapon(Weapon weapon) {
 }
 
 void OutputArmory(Armory armory) {
-    puts("\nСписок складского оружия: \n");
+    puts("\nСписок складского оружия:");
     for (int i = 0; i < armory.Nweapons; i++) {
-        printf("\"%s\", компания - %s, год выпуска - %d\n", armory.weapons[i].name, armory.weapons[i].company.name, armory.weapons[i].rel_year);
+        printf("\"%s\", компания: %s, год выпуска: %d\n", armory.weapons[i].name, armory.weapons[i].company.name, armory.weapons[i].rel_year);
     }
-    puts("\nСписок привязанных солдат: \n");
+    puts("\nСписок призванных солдат:");
     for (int i = 0; i < armory.Nsoldiers; i++) {
-        printf("Имя: %s, дата призыва: %s, прописка по адресу - %s\n", armory.soldiers[i].name, armory.soldiers[i].draft_date, armory.soldiers[i].address);
+        printf("Имя: %s, дата призыва: %s, прописка по адресу: %s\n", armory.soldiers[i].name, armory.soldiers[i].draft_date, armory.soldiers[i].address);
     }
-    puts("\nОперации на складе: \n");
+    puts("\nОперации на складе:");
     for (int i = 0; i < armory.Noperations; i++) {
-        printf("Оружие \"%s\", солдат: %s, Дата операции: %s, Вид операции: %s", armory.operations[i].weapon.name, armory.operations[i].soldier.name, armory.operations[i].date, armory.operations[i].operation);
+        printf("Оружие \"%s\", солдат: %s, Дата операции: %s, Вид операции: %s\n", armory.operations[i].weapon.name, armory.operations[i].soldier.name, armory.operations[i].date, armory.operations[i].operation);
     }
     puts("");
 }
-
+//Дополнительные функции добавления
 Armory WeaponToArmory(Armory armory, Weapon weapon) {
     armory.Nweapons += 1;
     armory.weapons = (Weapon*)realloc(armory.weapons, sizeof(Weapon) * armory.Nweapons);
