@@ -37,6 +37,9 @@ struct Armory {
     Soldier* soldiers;
     Control* operations;
     char* military;
+    int Nweapons = 1;
+    int Nsoldiers = 1;
+    int Noperations = 1;
 };
 
 void clean()  //Очистка потока
@@ -121,10 +124,15 @@ Armory InitArmory(Weapon weapon, Soldier soldier, Control operation, char* milit
     else {
         Armory buf;
         buf.military = military;
-        buf.weapons[0] = weapon;
-        buf.soldiers[0] = soldier;
-        buf.operations[0] = operation;
 
+        buf.weapons = (Weapon*)malloc(sizeof(Weapon));
+        buf.weapons[buf.Nweapons - 1] = weapon;
+
+        buf.operations = (Control*)malloc(sizeof(Control));
+        buf.operations[buf.Noperations - 1] = operation;
+
+        buf.soldiers = (Soldier*)malloc(sizeof(Soldier));
+        buf.soldiers[buf.Nsoldiers - 1] = soldier;
         return buf;
     }
 }
@@ -218,4 +226,34 @@ void OutputCompany(Company company) {// вывод информации о ко�
     puts(company.name);
     puts(company.found_date);
     puts(company.address);
+}
+
+void OutputWeapon(Weapon weapon) {
+    puts(weapon.name);
+    printf("%d\n", weapon.rel_year);
+    puts(weapon.company.name);
+    puts(weapon.company.found_date);
+    puts(weapon.company.address);
+}
+
+void OutputArmory(Armory armory) {
+    puts("Список приязанного оружия : ");
+    for (int i = 0; i < armory.Nweapons; i++) {
+        printf("\"%s\", компания - %s, год выпуска - %d\n", armory.weapons[i].name, armory.weapons[i].company.name, armory.weapons[i].rel_year);
+    }
+    puts("Список привязанных солдат : ");
+    for (int i = 0; i < armory.Nsoldiers; i++) {
+        printf("Имя: %s, дата призыва: %s, прописка по адресу - %s\n", armory.soldiers[i].name, armory.soldiers[i].draft_date, armory.soldiers[i].address);
+    }
+    puts("Операции на складе : ");
+    for (int i = 0; i < armory.Noperations; i++) {
+        printf("Оружие \"%s\", солдат: %s, Дата операции: %s, Вид операции: %s", armory.operations[i].weapon.name, armory.operations[i].soldier.name, armory.operations[i].date, armory.operations[i].operation);
+    }
+}
+
+Armory WeaponAddToArmory(Armory armory, Weapon weapon) {
+    armory.Nweapons += 1;
+    armory.weapons = (Weapon*)realloc(armory.weapons, sizeof(Weapon) * armory.Nweapons);
+    armory.weapons[armory.Nweapons - 1] = weapon;
+    return armory;
 }
