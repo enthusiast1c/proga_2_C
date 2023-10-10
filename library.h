@@ -163,7 +163,7 @@ Soldier InputSoldier() { // ввод солдата
     char* draft_date = (char*)calloc(Date, sizeof(char));
     char* address = (char*)calloc(LEN, sizeof(char));
 
-    puts("Введите имя солдата");
+    puts("Введите ФИО солдата:");
     gets_s(name, LEN);
     do {
         do {
@@ -237,23 +237,38 @@ void OutputWeapon(Weapon weapon) {
 }
 
 void OutputArmory(Armory armory) {
-    puts("Список приязанного оружия : ");
+    puts("\nСписок складского оружия: \n");
     for (int i = 0; i < armory.Nweapons; i++) {
         printf("\"%s\", компания - %s, год выпуска - %d\n", armory.weapons[i].name, armory.weapons[i].company.name, armory.weapons[i].rel_year);
     }
-    puts("Список привязанных солдат : ");
+    puts("\nСписок привязанных солдат: \n");
     for (int i = 0; i < armory.Nsoldiers; i++) {
         printf("Имя: %s, дата призыва: %s, прописка по адресу - %s\n", armory.soldiers[i].name, armory.soldiers[i].draft_date, armory.soldiers[i].address);
     }
-    puts("Операции на складе : ");
+    puts("\nОперации на складе: \n");
     for (int i = 0; i < armory.Noperations; i++) {
         printf("Оружие \"%s\", солдат: %s, Дата операции: %s, Вид операции: %s", armory.operations[i].weapon.name, armory.operations[i].soldier.name, armory.operations[i].date, armory.operations[i].operation);
     }
+    puts("");
 }
 
-Armory WeaponAddToArmory(Armory armory, Weapon weapon) {
+Armory WeaponToArmory(Armory armory, Weapon weapon) {
     armory.Nweapons += 1;
     armory.weapons = (Weapon*)realloc(armory.weapons, sizeof(Weapon) * armory.Nweapons);
     armory.weapons[armory.Nweapons - 1] = weapon;
+    return armory;
+}
+
+Armory SoldierToArmory(Armory armory, Soldier soldier) {
+    armory.Nsoldiers += 1;
+    armory.soldiers = (Soldier*)realloc(armory.soldiers, sizeof(Soldier) * armory.Nsoldiers);
+    armory.soldiers[armory.Nsoldiers - 1] = soldier;
+    return armory;
+}
+
+Armory OperationToArmory(Armory armory, Control operation) {
+    armory.Noperations += 1;
+    armory.operations = (Control*)realloc(armory.operations, sizeof(Control) * armory.Noperations);
+    armory.operations[armory.Noperations - 1] = operation;
     return armory;
 }
