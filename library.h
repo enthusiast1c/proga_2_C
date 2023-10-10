@@ -213,7 +213,7 @@ Control InputControl(Weapon weapon, Soldier soldier) {
 Armory InputArmory(Weapon weapon, Soldier soldier, Control operation) {
     char* military = (char*)calloc(LEN, sizeof(char));
 
-    puts("Введите адрес склада:");
+    puts("Введите номер ячейки склада (Н-р: ячейка А3):");
     gets_s(military, LEN);
 
     Armory buf = InitArmory(weapon, soldier, operation, military);

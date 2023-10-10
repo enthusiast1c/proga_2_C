@@ -28,24 +28,27 @@ int main()
         switch (choice) {
         case 1: 
             OutputArmory(armory);
-            _getch();
             puts("Нажмите любую клавишу для продолжения...");
+            _getch();
             break;
         case 2: 
             armory = SoldierToArmory(armory, InputSoldier());
-            OutputArmory(armory); break;
-            _getch();
+            OutputArmory(armory);
             puts("Нажмите ENTER для добавления солдата в список.");
+            _getch();
+            break;
         case 3:
             armory = WeaponToArmory(armory, InputWeapon(InputCompany()));
-            OutputArmory(armory); break;
-            _getch();
+            OutputArmory(armory);
             puts("Нажмите ENTER для добавления снаряжения в список.");
+            _getch();
+            break;
         case 4:
             armory = OperationToArmory(armory, InputControl(InputWeapon(InputCompany()),InputSoldier()));
-            OutputArmory(armory); break;
-            _getch();
+            OutputArmory(armory);
             puts("Нажмите ENTER для добавления операции в список.");
+            _getch();
+            break;
         case 5: 
             int yesno;
             do {
