@@ -33,34 +33,32 @@ int main()
             break;
         case 2: 
             armory = SoldierToArmory(armory, InputSoldier());
-            OutputArmory(armory);
             puts("Нажмите ENTER для добавления солдата в список.");
             _getch();
             break;
         case 3:
             armory = WeaponToArmory(armory, InputWeapon(InputCompany()));
-            OutputArmory(armory);
             puts("Нажмите ENTER для добавления снаряжения в список.");
             _getch();
             break;
         case 4:
             armory = OperationToArmory(armory, InputControl(InputWeapon(InputCompany()),InputSoldier()));
-            OutputArmory(armory);
             puts("Нажмите ENTER для добавления операции в список.");
             _getch();
             break;
         case 5: 
             int yesno;
             do {
-                printf("Вы уверены, что хотите выйти?\n|1|Да\n|2|Нет\n");
+                printf("Вы уверены, что хотите выйти?\n|1|Да\n|2|Нет\nВаш выбор: ");
                 scanf("%d", &yesno);
                 clean();
-            } while (choice !=1 || choice != 2);
-            if (choice == 1) {
-                exit = 1; break;
+            } while (yesno !=1 && yesno != 2);
+            if (yesno == 1) {
+                exit = 1; 
+                break;
             }
         }
-    } while (exit== 0);
+    } while (exit == 0);
     return 0;
 
 }
